@@ -1,4 +1,4 @@
-﻿namespace Calculadora
+namespace Calculadora
 {
     partial class Form1
     {
@@ -54,6 +54,10 @@
             this.C = new System.Windows.Forms.Button();
             this.PONTO = new System.Windows.Forms.Button();
             this.txtConta = new System.Windows.Forms.TextBox();
+            this.FATITE = new System.Windows.Forms.Button();
+            this.FIBREC = new System.Windows.Forms.Button();
+            this.FIBITE = new System.Windows.Forms.Button();
+            this.FATREC = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UM
@@ -169,7 +173,7 @@
             // SOMA
             // 
             this.SOMA.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.SOMA.Location = new System.Drawing.Point(177, 42);
+            this.SOMA.Location = new System.Drawing.Point(259, 42);
             this.SOMA.Name = "SOMA";
             this.SOMA.Size = new System.Drawing.Size(36, 23);
             this.SOMA.TabIndex = 10;
@@ -181,14 +185,14 @@
             // 
             this.txtResultado.Location = new System.Drawing.Point(8, 12);
             this.txtResultado.Name = "txtResultado";
-            this.txtResultado.Size = new System.Drawing.Size(206, 20);
+            this.txtResultado.Size = new System.Drawing.Size(287, 20);
             this.txtResultado.TabIndex = 11;
             this.txtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // SUBTRACAO
             // 
             this.SUBTRACAO.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.SUBTRACAO.Location = new System.Drawing.Point(177, 71);
+            this.SUBTRACAO.Location = new System.Drawing.Point(259, 71);
             this.SUBTRACAO.Name = "SUBTRACAO";
             this.SUBTRACAO.Size = new System.Drawing.Size(36, 23);
             this.SUBTRACAO.TabIndex = 12;
@@ -199,7 +203,7 @@
             // DIVISAO
             // 
             this.DIVISAO.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DIVISAO.Location = new System.Drawing.Point(177, 100);
+            this.DIVISAO.Location = new System.Drawing.Point(260, 100);
             this.DIVISAO.Name = "DIVISAO";
             this.DIVISAO.Size = new System.Drawing.Size(36, 23);
             this.DIVISAO.TabIndex = 13;
@@ -210,7 +214,7 @@
             // MULTIPLICACAO
             // 
             this.MULTIPLICACAO.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.MULTIPLICACAO.Location = new System.Drawing.Point(177, 129);
+            this.MULTIPLICACAO.Location = new System.Drawing.Point(259, 129);
             this.MULTIPLICACAO.Name = "MULTIPLICACAO";
             this.MULTIPLICACAO.Size = new System.Drawing.Size(36, 23);
             this.MULTIPLICACAO.TabIndex = 14;
@@ -287,7 +291,7 @@
             // RESTO
             // 
             this.RESTO.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.RESTO.Location = new System.Drawing.Point(135, 155);
+            this.RESTO.Location = new System.Drawing.Point(135, 157);
             this.RESTO.Name = "RESTO";
             this.RESTO.Size = new System.Drawing.Size(78, 23);
             this.RESTO.TabIndex = 21;
@@ -301,7 +305,7 @@
             this.RESULTADO.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.RESULTADO.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.RESULTADO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RESULTADO.Location = new System.Drawing.Point(135, 71);
+            this.RESULTADO.Location = new System.Drawing.Point(217, 71);
             this.RESULTADO.Name = "RESULTADO";
             this.RESULTADO.Size = new System.Drawing.Size(36, 81);
             this.RESULTADO.TabIndex = 22;
@@ -312,7 +316,7 @@
             // C
             // 
             this.C.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.C.Location = new System.Drawing.Point(135, 42);
+            this.C.Location = new System.Drawing.Point(217, 42);
             this.C.Name = "C";
             this.C.Size = new System.Drawing.Size(36, 23);
             this.C.TabIndex = 23;
@@ -327,23 +331,70 @@
             this.PONTO.Name = "PONTO";
             this.PONTO.Size = new System.Drawing.Size(36, 23);
             this.PONTO.TabIndex = 24;
-            this.PONTO.Text = ",";
+            this.PONTO.Text = ".";
             this.PONTO.UseVisualStyleBackColor = true;
-            this.PONTO.Click += new System.EventHandler(this.Digitou);
             // 
             // txtConta
             // 
             this.txtConta.Enabled = false;
             this.txtConta.Location = new System.Drawing.Point(135, 188);
             this.txtConta.Name = "txtConta";
-            this.txtConta.Size = new System.Drawing.Size(79, 20);
+            this.txtConta.Size = new System.Drawing.Size(161, 20);
             this.txtConta.TabIndex = 26;
+            // 
+            // FATITE
+            // 
+            this.FATITE.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.FATITE.Location = new System.Drawing.Point(135, 41);
+            this.FATITE.Name = "FATITE";
+            this.FATITE.Size = new System.Drawing.Size(78, 23);
+            this.FATITE.TabIndex = 27;
+            this.FATITE.Text = "! Iterativa";
+            this.FATITE.UseVisualStyleBackColor = true;
+            this.FATITE.Click += new System.EventHandler(this.Operacao);
+            // 
+            // FIBREC
+            // 
+            this.FIBREC.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.FIBREC.Location = new System.Drawing.Point(135, 128);
+            this.FIBREC.Name = "FIBREC";
+            this.FIBREC.Size = new System.Drawing.Size(78, 23);
+            this.FIBREC.TabIndex = 28;
+            this.FIBREC.Text = "Fib Recursivo";
+            this.FIBREC.UseVisualStyleBackColor = true;
+            this.FIBREC.Click += new System.EventHandler(this.Operacao);
+            // 
+            // FIBITE
+            // 
+            this.FIBITE.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.FIBITE.Location = new System.Drawing.Point(135, 100);
+            this.FIBITE.Name = "FIBITE";
+            this.FIBITE.Size = new System.Drawing.Size(78, 23);
+            this.FIBITE.TabIndex = 29;
+            this.FIBITE.Text = "Fib Iterativo";
+            this.FIBITE.UseVisualStyleBackColor = true;
+            this.FIBITE.Click += new System.EventHandler(this.Operacao);
+            // 
+            // FATREC
+            // 
+            this.FATREC.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.FATREC.Location = new System.Drawing.Point(135, 70);
+            this.FATREC.Name = "FATREC";
+            this.FATREC.Size = new System.Drawing.Size(79, 23);
+            this.FATREC.TabIndex = 30;
+            this.FATREC.Text = "! Recursiva";
+            this.FATREC.UseVisualStyleBackColor = true;
+            this.FATREC.Click += new System.EventHandler(this.Operacao);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(225, 223);
+            this.ClientSize = new System.Drawing.Size(307, 223);
+            this.Controls.Add(this.FATREC);
+            this.Controls.Add(this.FIBITE);
+            this.Controls.Add(this.FIBREC);
+            this.Controls.Add(this.FATITE);
             this.Controls.Add(this.txtConta);
             this.Controls.Add(this.PONTO);
             this.Controls.Add(this.C);
@@ -406,6 +457,10 @@
         private System.Windows.Forms.Button C;
         private System.Windows.Forms.Button PONTO;
         private System.Windows.Forms.TextBox txtConta;
+        private System.Windows.Forms.Button FATITE;
+        private System.Windows.Forms.Button FIBREC;
+        private System.Windows.Forms.Button FIBITE;
+        private System.Windows.Forms.Button FATREC;
 
     }
 }
