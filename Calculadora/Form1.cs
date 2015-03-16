@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,10 +14,9 @@ namespace Calculadora
     {
         private Calculador Calc;
         private string ope = "";
-        private int uses;
-        private double a ;
-        private double b ;
-        private double r ;
+        private double result;
+        private double b = Double.NaN;
+        private double a = Double.NaN;
         public Form1()
         {
             InitializeComponent();
@@ -29,148 +28,314 @@ namespace Calculadora
             
             txtResultado.Text += (sender as Button).Text;
             txtConta.Text += (sender as Button).Text;
-           
-        }
-
-        public void Clean()
-        {
-            txtResultado.Text = "";
         }
 
         private void Cleaned(object sender, EventArgs e)
         {
-            Clean();
-            uses = 0;
-            r = 0;
-            a = 0;
-            b = 0;
-            txtConta.Text = "";
+            txtResultado.Text = "";
+            txtConta.Text ="";
+            a = Double.NaN;
+            b = Double.NaN;
+            result = Double.NaN;
         }
 
         private void Result(object sender, EventArgs e)
         {
-            b = double.Parse(txtResultado.Text);
-            switch (ope)
+            switch(ope)
             {
-                case "SOMA":
-                    //Button btn = (Button)sender;
-                    r = (Calc.Soma(r, b));
-                    txtResultado.Text =  r.ToString();
-                    
-                break;
+                 case"SOMA":
+                    if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                         {
+                             b = Double.Parse(txtResultado.Text);
+                             a = Calc.Soma(a, b);
+                             b = Double.NaN;
+                             txtConta.Text = a.ToString() ;
+                             txtResultado.Text = a.ToString();
+                             a = Double.NaN;
+                         }
+                 break;
                 case "SUBTRACAO":
-                r = (Calc.Subtracao(r, b));
-                txtResultado.Text =  r.ToString();
-                break;
-                case "MULTIPLICACAO":
-                r = (Calc.Multiplicacao(r, b));
-                txtResultado.Text =  r.ToString();
-                break;
-                case "DIVISAO":
-                if (b == 0)
-                {
-                    txtResultado.Text = "Inexistente";
-                }else
-                    txtResultado.Text = (Calc.Divisao(a, b)).ToString();
-
-                break;
-                case "POTENCIA":
-                txtResultado.Text =  (Calc.Potencia(a, b)).ToString();
-                break;
-                case "RAIZ":
-                
-                if (b < 0 && a % 2 == 0)
-                {
-                    txtResultado.Text = "Inexistente";
-                }else
-                    txtResultado.Text =  (Calc.Raiz(b, a)).ToString();
-                
-                break;
-                case "PORCENTAGEM":
-                txtResultado.Text =(Calc.Porcentagem(a, b)).ToString();
+                 if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                         {
+                             b = Double.Parse(txtResultado.Text);
+                             a = Calc.Subtracao(a, b);
+                             b = Double.NaN;
+                             txtConta.Text = a.ToString() ;
+                             txtResultado.Text = a.ToString();
+                             a = Double.NaN;
+                         }
                 break;
                 case "RESTO":
-                if (b == 0)
+                if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
                 {
-                    txtResultado.Text = "Inexistente";
-                }else
-                txtResultado.Text = (Calc.Resto(a, b)).ToString();
+                    b = Double.Parse(txtResultado.Text);
+                    a = Calc.Resto(a, b);
+                    b = Double.NaN;
+                    txtConta.Text = a.ToString();
+                    txtResultado.Text = a.ToString();
+                    a = Double.NaN;
+                }
+                break;
+                case "MULTIPLICACAO":
+                if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                {
+                    b = Double.Parse(txtResultado.Text);
+                    a = Calc.Multiplicacao(a, b);
+                    b = Double.NaN;
+                    txtConta.Text = a.ToString();
+                    txtResultado.Text = a.ToString();
+                    a = Double.NaN;
+                }
+                break;
+                case "DIVISAO":
+                if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                {
+                    b = Double.Parse(txtResultado.Text);
+                    a = Calc.Divisao(a, b);
+                    b = Double.NaN;
+                    txtConta.Text = a.ToString();
+                    txtResultado.Text = a.ToString();
+                    a = Double.NaN;
+                }
+                break;
+                case "PORCENTAGEM":
+                if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                {
+                    b = Double.Parse(txtResultado.Text);
+                    a = Calc.Porcentagem(a, b);
+                    b = Double.NaN;
+                    txtConta.Text = a.ToString();
+                    txtResultado.Text = a.ToString();
+                    a = Double.NaN;
+                }
+                break;
+                case "RAIZ":
+                if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                {
+                    b = Double.Parse(txtResultado.Text);
+                    a = Calc.Raiz(b, a);
+                    b = Double.NaN;
+                    txtConta.Text = a.ToString();
+                    txtResultado.Text = a.ToString();
+                    a = Double.NaN;
+                }
+                break;
+                case "POTENCIA":
+                if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                {
+                    b = Double.Parse(txtResultado.Text);
+                    a = Calc.Potencia(b, a);
+                    b = Double.NaN;
+                    txtConta.Text = a.ToString();
+                    txtResultado.Text = a.ToString();
+                    a = Double.NaN;
+                }
                 break;
                 case "SEN":
-                txtResultado.Text = (Calc.Sen(b * (Math.PI / 180))).ToString();
+                a = Double.Parse(txtResultado.Text);
+                a = Calc.Sen(a);
+                txtConta.Text = a.ToString();
+                txtResultado.Text = a.ToString();
+                a = Double.NaN;
                 break;
                 case "COS":
-                txtResultado.Text = (Calc.Cos(b * (Math.PI / 180))).ToString();
+                a = Double.Parse(txtResultado.Text);
+                a = Calc.Cos(a);
+                txtConta.Text = a.ToString();
+                txtResultado.Text = a.ToString();
+                a = Double.NaN;
                 break;
                 case "TG":
-                txtResultado.Text =  (Calc.Tg(b * (Math.PI / 180))).ToString();
+                a = Double.Parse(txtResultado.Text);
+                a = Calc.Tg(a);
+                txtConta.Text = a.ToString();
+                txtResultado.Text = a.ToString();
+                a = Double.NaN;
                 break;
-                default: txtResultado.Text = ope; break;
-            }
-            a = 0;
-            b = 0;
-            r = 0;
+                case "FIBREC":
+                a = Double.Parse(txtResultado.Text);
+                a = Calc.FibonacciRecursiva(a);
+                txtConta.Text = a.ToString();
+                txtResultado.Text = a.ToString();
+                a = Double.NaN;
+                break;
+                case "FIBITE":
+                a = Double.Parse(txtResultado.Text);
+                a = Calc.FibonacciIterativa(a);
+                txtConta.Text = a.ToString();
+                txtResultado.Text = a.ToString();
+                a = Double.NaN;
+                break;
+                case "FATITE":
+                a = Double.Parse(txtResultado.Text);
+                a = Calc.FatorialIterativa(a);
+                txtConta.Text = a.ToString();
+                txtResultado.Text = a.ToString();
+                a = Double.NaN;
+                break;
+                case "FATREC":
+                a = Double.Parse(txtResultado.Text);
+                a = Calc.FatorialRecursiva(a);
+                txtConta.Text = a.ToString();
+                txtResultado.Text = a.ToString();
+                a = Double.NaN;
+                break;
+             }
         }
 
         private void Operacao(object sender, EventArgs e)
         {
-            
-           //Adiciona a operação do butão apertado
-            if (ope != (sender as Button).Name)
+            ope = (sender as Button).Name;
+            if (!(string.IsNullOrEmpty(txtResultado.Text)) || ope.Equals("COS") || ope.Equals("SEN") || ope.Equals("TG") ||
+                ope.Equals("FIBITE") || ope.Equals("FIBREC") || ope.Equals("FATITE") || ope.Equals("FATREC"))
             {
-                
-                ope = (sender as Button).Name;
+                switch (ope)
+                {
+                    case "SOMA":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += "+";
+                            MessageBox.Show("case1");
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Soma(a, b);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + "+";
+                            txtResultado.Text = a.ToString();
+                        }
+                        break;
+                    case "SUBTRACAO":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += "-";
+                            MessageBox.Show("case1");
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Subtracao(a, b);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + "-";
+                        }
+                        break;
+                    case "RESTO":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += " restoDe ";
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Resto(a, b);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + " restoDe ";
+                            txtResultado.Text = a.ToString();
+                        }
+                        break;
+                    case "MULTIPLICACAO":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += " * ";
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Multiplicacao(a, b);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + " * ";
+                            txtResultado.Text = a.ToString();
+                        }
+                        break;
+                    case "DIVISAO":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += " / ";
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Divisao(a, b);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + " / ";
+                            txtResultado.Text = a.ToString();
+                        }
+                        break;
+                    case "POTENCIA":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += " elevado A ";
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Potencia(b, a);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + " elevado A ";
+                            txtResultado.Text = a.ToString();
+                        }
+                        break;
+                    case "RAIZ":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += " √ ";
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Raiz(b, a);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + " √ ";
+                            txtResultado.Text = a.ToString();
+                        }
+                        break;
+                    case "PORCENTAGEM":
+                        if (a.Equals(Double.NaN))
+                        {
+                            a = Double.Parse(txtResultado.Text);
+                            txtConta.Text += "% porcentoDE ";
+                        }
+                        else if (!(b.Equals(Double.NaN) && a.Equals(Double.NaN)))
+                        {
+                            b = Double.Parse(txtResultado.Text);
+                            a = Calc.Porcentagem(b, a);
+                            b = Double.NaN;
+                            txtConta.Text = a.ToString() + "% porcentoDE ";
+                            txtResultado.Text = a.ToString();
+                        }
+                        break;
+                    case "SEN":
+                        txtConta.Text += "Sen ";
+                    break;
+                    case "COS":
+                    txtConta.Text += "Cos ";
+                    break;
+                    case "TG":
+                    txtConta.Text += "Tang ";
+                    break;
+                    case "FIBREC":
+                    txtConta.Text += "Fib ";
+                    break;
+                    case "FIBITE":
+                    txtConta.Text += "Fib ";
+                    break;
+                    case "FATITE":
+                    txtConta.Text += "! ";
+                    break;
+                    case "FATREC":
+                    txtConta.Text += "! ";
+                    break;
+                }
             }
-            if (txtResultado.Text.Length != 0)
-            {
-                a = double.Parse(txtResultado.Text);
-                txtResultado.Text = "";
-            }
-            //Mexe na segunda caixa de texto
-            switch (ope)
-            {
-                case "SOMA":
-                    txtConta.Text += "+";
-                        r = (Calc.Soma(r, a));
-                    break;
-                case "SUBTRACAO":
-                    txtConta.Text += "-";
-                     if(uses.Equals(0)) r = a;
-                     else r = Calc.Subtracao(r,a);
-                    break;
-                case "MULTIPLICACAO":
-                    txtConta.Text += "*";
-                    if (uses.Equals(0)) r = a;
-                    else r = Calc.Multiplicacao(r, a);
-                    break;
-                case "DIVISAO":
-                    txtConta.Text += "/";
-                    break;
-                case "POTENCIA":
-                    txtConta.Text += "x²";
-                    break;
-                case "RAIZ":
-                    txtConta.Text += "√";
-                    break;
-                case "PORCENTAGEM":
-                    txtConta.Text += "%";
-                    break;
-                case "RESTO":
-                    txtConta.Text += "$";
-                    break;
-                case "SEN":
-                    txtConta.Text += "sen";
-                    break;
-                case "COS":
-                    txtConta.Text += "cos";
-                    break;
-                case "TG":
-                    txtConta.Text += "tg";
-                    break;
-                default: txtResultado.Text = ope; break;
-            }
-            uses++;
-        //-----------------------------
+            txtResultado.Text = "";
         }
 
         private void Form1_Load(object sender, EventArgs e)
